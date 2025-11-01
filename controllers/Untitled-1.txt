@@ -1,0 +1,9 @@
+Review:
+AUTH:: Token
+POST:: Create Review 
+UPDATE Review: --- user id, review id
+DELETE Review: user id,, reviewid 
+
+---------------------------------------------------------------------------------------
+Without Token
+GET Product Reviews -- product id
