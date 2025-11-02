@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -16,3 +16,5 @@ mongoose
     console.log(`Error connecting to MongoDB: ${err.message}`);
 });
 
+// Export default to allow importing in index.js
+export default mongoose;
