@@ -14,4 +14,5 @@ mongoose
     console.log(`Error connecting to MongoDB: ${err.message}`);
 });
 
+// Export default to allow importing in index.js
 export default mongoose;
