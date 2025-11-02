@@ -21,11 +21,35 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Define the correct CORS configuration
+const allowedOrigins = [
+  "https://e-commerce-website-front-end-dun.vercel.app",
+  process.env.FRONTEND_URL,
+  process.env.CORS_ORIGIN,
+  "http://localhost:5173",
+  "http://localhost:3000",
+].filter(Boolean); // Remove any undefined/null values
+
 const corsOptions = {
-  // Use the specific origin of your frontend application
-  origin: process.env.FRONTEND_URL || process.env.CORS_ORIGIN || "http://localhost:5173", 
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Check if the origin is in the allowed list
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      // For development, allow any localhost origin
+      if (origin.includes("localhost") || origin.includes("127.0.0.1")) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
 };
 
 // Apply the configured CORS middleware
