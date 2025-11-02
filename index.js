@@ -23,8 +23,7 @@ const port = process.env.PORT || 3001;
 // Define the correct CORS configuration
 const corsOptions = {
   // Use the specific origin of your frontend application
-  // Replace 'http://localhost:5173' with your actual frontend URL if different
-  origin: "http://localhost:5173", 
+  origin: process.env.FRONTEND_URL || process.env.CORS_ORIGIN || "http://localhost:5173", 
   credentials: true,
   optionsSuccessStatus: 200,
 };
