@@ -8,13 +8,12 @@ console.log("MONGO_URL", MONGO_URL);
 
 
 mongoose
-  .connect(MONGO_URL)
+  .connect(MONGO_URL, { dbName: 'ecommerc' })
   .then(() => {
-  console.log(`Connected to MongoDB ${MONGO_URL}`);
+  console.log(`Connected to MongoDB database 'ecommerc'`);
 }) 
 .catch((err) => {
     console.log(`Error connecting to MongoDB: ${err.message}`);
 });
 
-// Export default to allow importing in index.js
 export default mongoose;
