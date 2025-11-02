@@ -4,8 +4,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const MONGO_URL = process.env.MONGO_URL;
-console.log("MONGO_URL", MONGO_URL);
-
 
 mongoose
   .connect(MONGO_URL, { dbName: 'ecommerc' })
